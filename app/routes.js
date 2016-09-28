@@ -2,16 +2,20 @@
 
 module.exports = function(app) {
 
-    // =====================================
-    // HOME PAGE (with login links) ========
-    // =====================================
-    app.get('/', function(req, res) {
-        res.status(200).send("index.html");
+    // =======================================
+    // New Race started ======================
+    // =======================================
+    app.get('/api/v1/race_session/new', function(req, res) {
+        console.log("New race started!");
+        res.status(200).send("New Race started");
     });
     
-    app.post('/newRaceTrackEvent', function(req, res) {
-        console.log(req.body);
-        res.status(200).send("newRaceTrackEvent.html");
+    // =======================================
+    // Token passed finish ===================
+    // =======================================
+    app.get('/api/v1/lap_track/create', function(req, res) {
+        console.log("New Lap for Token "+req.query["transponder_token"]+": "+req.query["lap_time_in_ms"]+"ms")
+        res.status(200).send("New Lap for Token "+req.query["transponder_token"]+": "+req.query["lap_time_in_ms"]+"ms");
     });
 
 };

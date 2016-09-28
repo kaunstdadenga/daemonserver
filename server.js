@@ -12,10 +12,11 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 // set up our express application
-app.use(morgan('dev')); // log every request to the console
+//app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({ extended: true })); // get information from html forms
 app.use(bodyParser.json()); // process json
+app.use(function (req,res,next) { req.url = req.url.replace(/[/]+/g, '/'); next(); });
 
 
 // routes ======================================================================
